@@ -1,0 +1,76 @@
+  .container-update {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title-update {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #495057;
+  }
+  
+  .form-update label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    color: #495057;
+  }
+  
+  .form-update input,
+  .form-update select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #adb5bd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .form-update select {
+    cursor: pointer;
+  }
+  
+  .form-update input[readonly] {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+  }
+  
+  .form-update button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-update button:hover {
+    background-color: #218838;
+  }
+  
+  .form-update button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+
+  .textarea-localizacao {
+    width: 100%;
+    min-height: 60px;
+    resize: vertical;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }

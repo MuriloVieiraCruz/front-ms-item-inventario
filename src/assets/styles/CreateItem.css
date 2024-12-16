@@ -1,0 +1,66 @@
+  .container-create {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title-create {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  .form-create label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    color: #495057;
+  }
+  
+  .form-create input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .form-create button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-create button:hover {
+    background-color: #0056b3;
+  }
+  
+  .form-create button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+
+  .textarea-localizacao {
+    width: 100%;
+    min-height: 60px;
+    resize: vertical;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
