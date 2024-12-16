@@ -7,7 +7,7 @@
     </button>
 
     <div class="filter-buttons">
-      <label for="filterCodigo" class="form-label me-2">Filtrar por Código:</label>
+      <label for="filterCodigo" class="form-label me-2">Filtrar por ID:</label>
       <input
         id="filterCodigo"
         type="text"
