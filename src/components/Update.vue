@@ -34,7 +34,7 @@
         rows="4"
         maxlength="250"
         class="textarea-localizacao"
-      />
+      ></textarea>
       <button type="submit">Salvar</button>
     </form>
 
@@ -47,7 +47,6 @@
       @close="handleSuccessModalClose"
     />
 
-    <!-- Modal de Erros -->
     <MessageModal
       v-if="showErrorModal"
       :visible="showErrorModal"
@@ -85,12 +84,12 @@ export default {
   methods: {
     fetchItem() {
       const id = this.$route.params.id;
-      api.get(`/item-inventario/${id}`).then((response) => {
+      api.get(`/${id}`).then((response) => {
         this.item = response.data;
       });
     },
     updateItem() {
-      api.put("/item-inventario", this.item)
+      api.put("/", this.item)
         .then(() => {
           this.successMessage = "Item atualizado com sucesso!";
           this.showSuccessModal = true;

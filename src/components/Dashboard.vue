@@ -2,12 +2,33 @@
   <div class="container container-custom">
     <h1 class="title-custom">Inventário</h1>
 
-    <!-- Botão Criar -->
     <button class="btn btn-create mb-3" @click="goToCreate">
       Novo Item
     </button>
 
-    <!-- Tabela -->
+    <div class="filter-buttons">
+      <label for="filterCodigo" class="form-label me-2">Filtrar por Código:</label>
+      <input
+        id="filterCodigo"
+        type="text"
+        class="form-control form-control-sm me-2"
+        v-model="filterCodigo"
+        placeholder="Digite o código do produto"
+      />
+      <button
+        class="btn-filter"
+        @click="applyFilter"
+      >
+        Filtrar
+      </button>
+      <button
+        class="btn-clear"
+        @click="clearFilter"
+      >
+        Limpar
+      </button>
+    </div>
+
     <table class="table table-bordered table-hover table-striped table-custom">
       <thead>
         <tr>
@@ -48,7 +69,6 @@
       </tbody>
     </table>
 
-    <!-- Paginação -->
     <div class="d-flex justify-content-between align-items-center mt-3">
       <div>
         <label for="pageSize" class="form-label">Itens por página:</label>
@@ -84,7 +104,6 @@
       </div>
     </div>
 
-    <!-- Modal de Confirmação -->
     <ConfirmationModal
       v-if="showConfirmModal"
       :visible="showConfirmModal"
@@ -94,7 +113,6 @@
       @cancel="showConfirmModal = false"
     />
 
-    <!-- Modal de Sucesso -->
     <MessageModal
       v-if="showSuccessModal"
       :visible="showSuccessModal"
@@ -104,7 +122,6 @@
       @close="showSuccessModal = false"
     />
 
-    <!-- Modal de Erro -->
     <MessageModal
       v-if="showErrorModal"
       :visible="showErrorModal"
@@ -133,6 +150,7 @@ export default {
         size: 10,
       },
       totalPages: 1,
+      filterCodigo: "",
       showConfirmModal: false,
       showSuccessModal: false,
       showErrorModal: false,
@@ -143,24 +161,46 @@ export default {
   },
   methods: {
     fetchItems() {
-      api
-        .get("/item-inventario/listAll", {
-          params: {
-            page: this.pagination.page,
-            size: this.pagination.size,
-          },
-        })
-        .then((response) => {
-          this.items = response.data.content;
-          this.totalPages = response.data.totalPages;
-        })
-        .catch(() => {
-          this.errorMessage = "Erro ao carregar os itens do inventário!";
-          this.showErrorModal = true;
-        });
-    },
+  if (this.filterCodigo.trim() !== "") {
+    api
+      .get(`/${this.filterCodigo}`)
+      .then((response) => {
+        this.items = [response.data];
+        this.totalPages = 1;
+      })
+      .catch(() => {
+        this.items = [];
+        this.totalPages = 0;
+        alert("Nenhum item encontrado ou erro ao buscar o item.");
+      });
+  } else {
+    api
+      .get("/listAll", {
+        params: {
+          page: this.pagination.page,
+          size: this.pagination.size,
+        },
+      })
+      .then((response) => {
+        this.items = response.data.content;
+        this.totalPages = response.data.totalPages;
+      })
+      .catch(() => {
+        alert("Erro ao carregar os itens do inventário.");
+      });
+  }
+},
     changePage(newPage) {
       this.pagination.page = newPage;
+      this.fetchItems();
+    },
+    applyFilter() {
+      this.pagination.page = 0;
+      this.fetchItems();
+    },
+    clearFilter() {
+      this.filterCodigo = "";
+      this.pagination.page = 0;
       this.fetchItems();
     },
     goToCreate() {
@@ -175,7 +215,7 @@ export default {
     },
     deleteItem() {
       api
-        .delete(`/item-inventario/${this.selectedItemId}`)
+        .delete(`/${this.selectedItemId}`)
         .then(() => {
           this.successMessage = "Item excluído com sucesso!";
           this.showSuccessModal = true;

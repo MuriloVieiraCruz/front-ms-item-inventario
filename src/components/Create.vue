@@ -27,11 +27,10 @@
         rows="4"
         maxlength="250"
         class="textarea-localizacao"
-      />
+      ></textarea>
       <button type="submit">Salvar</button>
     </form>
 
-    <!-- Modal de Sucesso -->
     <MessageModal
       v-if="showSuccessModal"
       :visible="showSuccessModal"
@@ -41,7 +40,6 @@
       @close="handleSuccessModalClose"
     />
 
-    <!-- Modal de Erro -->
     <MessageModal
       v-if="showErrorModal"
       :visible="showErrorModal"
@@ -77,7 +75,7 @@ export default {
   methods: {
     createItem() {
       api
-        .post("/item-inventario", this.item)
+        .post("/", this.item)
         .then(() => {
           this.successMessage = "Item criado com sucesso!";
           this.showSuccessModal = true;

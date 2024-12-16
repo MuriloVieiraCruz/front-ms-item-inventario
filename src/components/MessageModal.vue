@@ -53,11 +53,11 @@ export default {
     },
     headerColor: {
       type: String,
-      default: "#28a745", // Verde (sucesso) por padrão
+      default: "#28a745",
     },
     headerTextColor: {
       type: String,
-      default: "#ffffff", // Texto branco por padrão
+      default: "#ffffff",
     },
   },
   methods: {
