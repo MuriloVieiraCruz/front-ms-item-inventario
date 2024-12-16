@@ -161,35 +161,35 @@ export default {
   },
   methods: {
     fetchItems() {
-  if (this.filterCodigo.trim() !== "") {
-    api
-      .get(`/${this.filterCodigo}`)
-      .then((response) => {
-        this.items = [response.data];
-        this.totalPages = 1;
-      })
-      .catch(() => {
-        this.items = [];
-        this.totalPages = 0;
-        alert("Nenhum item encontrado ou erro ao buscar o item.");
-      });
-  } else {
-    api
-      .get("/listAll", {
-        params: {
-          page: this.pagination.page,
-          size: this.pagination.size,
-        },
-      })
-      .then((response) => {
-        this.items = response.data.content;
-        this.totalPages = response.data.totalPages;
-      })
-      .catch(() => {
-        alert("Erro ao carregar os itens do inventário.");
-      });
-  }
-},
+      if (this.filterCodigo.trim() !== "") {
+        api
+          .get(`/${this.filterCodigo}`)
+          .then((response) => {
+            this.items = [response.data];
+            this.totalPages = 1;
+          })
+          .catch(() => {
+            this.items = [];
+            this.totalPages = 0;
+            alert("Nenhum item encontrado ou erro ao buscar o item.");
+          });
+      } else {
+        api
+          .get("/listAll", {
+            params: {
+              page: this.pagination.page,
+              size: this.pagination.size,
+            },
+          })
+          .then((response) => {
+            this.items = response.data.content;
+            this.totalPages = response.data.totalPages;
+          })
+          .catch(() => {
+            alert("Erro ao carregar os itens do inventário.");
+          });
+      }
+    },
     changePage(newPage) {
       this.pagination.page = newPage;
       this.fetchItems();
